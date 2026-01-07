@@ -28,14 +28,30 @@
 console.log("script running");
 
 // TODO: Fix this bug - should select #apple, not #banana!
-const appleButton = document.querySelector("#banana");
+const appleButton = document.querySelector("#apple");
+const bananaButton = document.querySelector("#banana");
+const mangoButton = document.querySelector("#mango");
 
-console.log(appleButton);
+const shoppingCart = document.querySelector("#shopping-cart");
+const totalSpan = document.querySelector("#total-span");
+
+let total = 0;
+const prices = {
+  apple: 0.75,
+  banana: 0.30,
+  mango: 1.25
+};
 
 // TODO: Rename this function to something more generic like "addItem"
-const addApple = () => {
-  alert("apple button under construction");
+const addItem = (itemName) => {
+  const item = document.createElement("p");
+  item.textContent = `${itemName} - $${prices[itemName].toFixed(2)}`;
+  shoppingCart.appendChild(item);
+  total += prices[itemName];
+  totalSpan.textContent = total.toFixed(2);
 };
 
 // TODO: Add event listeners for all three buttons
-appleButton.addEventListener("click", addApple);
+appleButton.addEventListener("click", () => addItem("apple"));
+bananaButton.addEventListener("click", () => addItem("banana"));
+mangoButton.addEventListener("click", () => addItem("mango"));
